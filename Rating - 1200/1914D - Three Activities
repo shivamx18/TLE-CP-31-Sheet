@@ -1,0 +1,107 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define PI (3.141592653589)
+#define M 1000000007
+#define pb push_back
+#define f first
+#define s second
+#define rep(i,k,j) for(int i = k; i<j; i++)
+#define rrep(i,k,j) for(int i = j; i>=k; i--)
+#define all(x) x.begin(), x.end()
+#define out(x) cout << x << endl;
+#define YES cout<<"YES"<<endl;
+#define NO cout<<"NO"<<endl;
+#define pm cout<<"-1"<<endl;
+#define nl cout << '\n';
+#define cap(s) std::transform(s.begin(), s.end(), s.begin(), std::ptr_fun<int, int>(std::toupper))
+#define small(s) std::transform(s.begin(), s.end(), s.begin(), std::ptr_fun<int, int>(std::tolower))
+
+//Typedef
+typedef long long ll;
+typedef pair<int, int> pi;
+typedef pair<ll, ll> pl;
+typedef vector<int> vi;
+typedef vector<ll> vl;
+typedef vector<pi> vpi;
+typedef vector<pl> vpl;
+typedef vector<vi> vvi;
+typedef vector<vl> vvl;
+typedef map<int,int> mii;
+
+// Debug Overloads
+#ifdef localenv
+#define debug(x) _print(x); cerr << endl;
+#else
+#define debug(x)
+#endif
+
+void _print(ll t) {cerr << t;}
+void _print(int t) {cerr << t;}
+void _print(string t) {cerr << t;}
+void _print(char t) {cerr << t;}
+void _print(double t) {cerr << t;}
+
+template <class T, class V> void _print(pair <T, V> p);
+template <class T> void _print(vector <T> v);
+template <class T> void _print(set <T> v);
+template <class T> void _print(multiset <T> v);
+template <class T, class V> void _print(pair <T, V> p) {cerr << "{"; _print(p.f); cerr << ","; _print(p.s); cerr << "}";}
+template <class T> void _print(vector <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr <<"]";}
+template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
+template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr <<"]";}
+template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << "";} cerr << "]";}
+
+// Operator Overloads
+template<typename T> // cin >> vector<T>
+istream& operator>>(istream &istream, vector<T> &v){for (auto &it : v)cin >> it;return istream;}
+template<typename T> // cout << vector<T>
+ostream& operator<<(ostream &ostream, const vector<T> &c) { for (auto &it : c) cout << it << " ";return ostream; }
+
+/************************************************** CODE HERE *****************************************************/
+
+void solve()
+{
+  ll n;cin>>n;
+  vpl v1(n),v2(n),v3(n);
+  rep(i,0,n) cin>>v1[i].f,v1[i].s=i;
+  rep(i,0,n) cin>>v2[i].f,v2[i].s=i;
+  rep(i,0,n) cin>>v3[i].f,v3[i].s=i;
+
+  sort(all(v1));reverse(all(v1));
+  sort(all(v2));reverse(all(v2));
+  sort(all(v3));reverse(all(v3));
+
+  ll result = 0;
+  rep(i,0,3)
+  {
+    rep(j,0,3)
+    {
+      rep(k,0,3)
+      {
+        ll a1=v1[i].s,a2=v2[j].s,a3=v3[k].s;
+        if(a1==a2||a2==a3||a3==a1) continue;
+        
+        ll temp = v1[i].f + v2[j].f + v3[k].f;
+        result = max(result,temp);
+      }
+    }
+  }
+  cout << result;
+  nl
+}
+
+/************************************************** ENDS HERE *****************************************************/
+
+int32_t main()
+{
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+  ll tc;
+  cin >> tc;
+  while (tc--)
+  {
+    solve();
+  }
+  return 0;
+}
